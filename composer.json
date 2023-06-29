@@ -1,0 +1,73 @@
+{
+  "repositories": [
+    {
+        "type":"package",
+        "package": {
+          "name": "ostyna/core",
+          "version":"0.0.1",
+          "source": {
+              "url": "https://github.com/enLussi/ostyna-core.git",
+              "type": "git",
+              "reference":"release/0.0.1"
+            },
+          "autoload": {
+              "psr-4": {
+                "Ostyna\\Core\\": "",
+                "Ostyna\\Component\\Error\\": "exceptions/",
+                "Ostyna\\Component\\Environment\\": "dotenv/",
+                "Ostyna\\Component\\Utils\\": "utils/",
+                "Ostyna\\Component\\Framework\\": "framework/",
+                "Ostyna\\Component\\Traits\\": "traits/",
+                "Ostyna\\Component\\Controllers\\": "controllers/",
+                "Ostyna\\Component\\Interface\\": "interface/",
+                "Ostyna\\Component\\Commands\\": "commands/"
+              }
+            }
+        }
+      },
+      {
+        "type":"package",
+        "package": {
+          "name": "ostyna/orm",
+          "version":"0.0.1",
+          "source": {
+              "url": "https://github.com/enLussi/ostyna-orm.git",
+              "type": "git",
+              "reference":"main"
+            },
+          "autoload": {
+              "psr-4": {
+                "Ostyna\\ORM\\": "",
+                "Ostyna\\ORM\\Commands\\": "commands/",
+                "Ostyna\\ORM\\Migrations\\": "migrations/",
+                "Ostyna\\ORM\\Utils\\": "utils/",
+                "Ostyna\\ORM\\Base\\": "Base/"
+              }
+            }
+        }
+    },
+    {
+      "type":"package",
+      "package": {
+        "name": "ostyna/sing",
+        "version":"0.0.1",
+        "source": {
+            "url": "https://github.com/enLussi/ostyna-sing.git",
+            "type": "git",
+            "reference":"dev"
+          },
+        "autoload": {
+            "psr-4": {
+              "Ostyna\\Sing\\": "",
+              "Ostyna\\Sing\\Utils\\": "utils/"
+            }
+          }
+      }
+    }
+  ],
+  "require": {
+    "ostyna/core": "^0.0.1",
+    "ostyna/sing": "^0.0.1",
+    "ostyna/orm": "^0.0.1"
+  }
+}

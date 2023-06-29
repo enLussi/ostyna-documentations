@@ -1,0 +1,77 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "ce7375411ae046045784b61186356a2b",
+    "packages": [
+        {
+            "name": "ostyna/core",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/enLussi/ostyna-core.git",
+                "reference": "release/0.0.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ostyna\\Core\\": "",
+                    "Ostyna\\Component\\Error\\": "exceptions/",
+                    "Ostyna\\Component\\Environment\\": "dotenv/",
+                    "Ostyna\\Component\\Utils\\": "utils/",
+                    "Ostyna\\Component\\Framework\\": "framework/",
+                    "Ostyna\\Component\\Traits\\": "traits/",
+                    "Ostyna\\Component\\Controllers\\": "controllers/",
+                    "Ostyna\\Component\\Interface\\": "interface/",
+                    "Ostyna\\Component\\Commands\\": "commands/"
+                }
+            }
+        },
+        {
+            "name": "ostyna/orm",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/enLussi/ostyna-orm.git",
+                "reference": "main"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ostyna\\ORM\\": "",
+                    "Ostyna\\ORM\\Commands\\": "commands/",
+                    "Ostyna\\ORM\\Migrations\\": "migrations/",
+                    "Ostyna\\ORM\\Utils\\": "utils/",
+                    "Ostyna\\ORM\\Base\\": "Base/"
+                }
+            }
+        },
+        {
+            "name": "ostyna/sing",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/enLussi/ostyna-sing.git",
+                "reference": "dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ostyna\\Sing\\": "",
+                    "Ostyna\\Sing\\Utils\\": "utils/"
+                }
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

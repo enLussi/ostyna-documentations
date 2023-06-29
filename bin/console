@@ -1,0 +1,28 @@
+#!/usr/bin/php
+<?php
+
+use Ostyna\Component\Utils\ConsoleUtils;
+use Ostyna\Core\autoload;
+use Ostyna\Core\BaseCore;
+
+if (true === (require_once __DIR__.'/../vendor/autoload.php') || empty($_SERVER['SCRIPT_FILENAME'])) {
+  return;
+}
+autoload::register();
+
+BaseCore::getInstance()->console();
+
+$arguments = $argv;
+array_shift($arguments);
+$options = [];
+
+foreach($arguments as $argument) {
+  if (strpos($argument, '--') === 0) {
+    $option = substr($argument, 2);
+    $options[] = $option;
+  }
+}
+
+ConsoleUtils::interprete($arguments[0], $options);
+
+?>
