@@ -1,0 +1,34 @@
+{
+    "mainpage": {
+        "path": "\/",
+        "methods": "App\\Controllers\\MainpageController::display"
+    },
+    "documentation": {
+        "path": "\/documentation",
+        "methods": "App\\Controllers\\DocumentationController::display"
+    },
+    "changelog": {
+        "path": "\/changelog",
+        "methods": "App\\Controllers\\ChangelogController::display"
+    },
+    "security": {
+        "path": "\/connexion",
+        "methods": "App\\Controllers\\SecurityController::display"
+    },
+    "profil": {
+        "path": "\/profil",
+        "methods": "App\\Controllers\\ProfilController::display"
+    },
+    "tickets": {
+        "path": "\/tickets",
+        "methods": "App\\Controllers\\TicketsController::display"
+    },
+    "btickets": {
+        "path": "\/admin\/tickets",
+        "methods": "App\\Controllers\\BticketsController::display"
+    },
+    "bchangelog": {
+        "path": "\/admin\/changelog",
+        "methods": "App\\Controllers\\BchangelogController::display"
+    }
+}
