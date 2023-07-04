@@ -1,3 +1,5 @@
 /var/
 /vendor/
 /.env.local
+/public/assets/css/*.scss
+/public/assets/css/**/*.scss
