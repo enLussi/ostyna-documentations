@@ -66,8 +66,8 @@
     }
   ],
   "require": {
-    "ostyna/core": "^0.0.1",
     "ostyna/sing": "^0.0.1",
-    "ostyna/orm": "^0.0.1"
+    "ostyna/orm": "^0.0.1",
+    "ostyna/core": "^0.0.1"
   }
 }

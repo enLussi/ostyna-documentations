@@ -1,0 +1,296 @@
+{
+    "User": [
+        {
+            "Field": "id",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "email",
+            "Type": "VARCHAR(255)",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "username",
+            "Type": "VARCHAR(100)",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "password",
+            "Type": "VARCHAR(255)",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        }
+    ],
+    "Subscriber": [
+        {
+          "Field": "id",
+          "Type": "INT(11)",
+          "Null": "NO",
+          "Key": "MUL",
+          "Default": null,
+          "Extra": "",
+          "RelatedTo": "User"
+        },
+        {
+            "Field": "subscribeat",
+            "Type": "DATETIME",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        }
+    ],
+    "Admin": [
+        {
+            "Field": "id",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": "User"
+        },
+        {
+            "Field": "roles",
+            "Type": "TEXT",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        }
+    ],
+    "State": [
+        {
+            "Field": "id",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "name",
+            "Type": "VARCHAR(100)",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        }
+    ],
+    "Tickets": [
+        {
+            "Field": "id",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "title",
+            "Type": "VARCHAR(255)",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        },
+        {
+            "Field": "date",
+            "Type": "DATETIME",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        },
+        {
+            "Field": "content",
+            "Type": "TEXT",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        },
+        {
+            "Field": "seriousness",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "",
+            "Default": "0",
+            "Extra": "",
+            "RelatedTo": ""
+        },
+        {
+            "Field": "author",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": "Subscriber"
+        },
+        {
+            "Field": "resolver",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": "Admin"
+        },
+        {
+            "Field": "state",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": "State"
+        }
+    ],
+    "Version": [
+        {
+            "Field": "id",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "link",
+            "Type": "TEXT",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        },
+        {
+            "Field": "name",
+            "Type": "VARCHAR(100)",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        },
+        {
+            "Field": "issupported",
+            "Type": "BOOL",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        }
+    ],
+    "Changelog": [
+        {
+            "Field": "id",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "date",
+            "Type": "DATETIME",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        },
+        {
+            "Field": "content",
+            "Type": "TEXT",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        },
+        {
+            "Field": "version",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": "Version"
+        },
+        {
+            "Field": "author",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": "Admin"
+        }
+    ],
+    "Remark": [
+        {
+            "Field": "id",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "content",
+            "Type": "TEXT",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        },
+        {
+            "Field": "date",
+            "Type": "DATETIME",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": ""
+        },
+        {
+            "Field": "ticket",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": "Tickets"
+        },
+        {
+            "Field": "author",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": "Subscriber"
+        }
+    ]
+}

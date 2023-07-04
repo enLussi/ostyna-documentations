@@ -1,0 +1,11 @@
+{
+  "dev": {
+    "preload":[
+      "ostyna/orm",
+      "ostyna/core"
+    ],
+    "supplies": "App\\DataSupplies"
+  },
+  "templates": "templates",
+  "error_template": "/errors"
+}
