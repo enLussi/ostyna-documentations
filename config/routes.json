@@ -15,6 +15,10 @@
         "path": "\/connexion",
         "method": "App\\Controllers\\SecurityController::display"
     },
+    "subscribe": {
+      "path": "\/inscription",
+      "method": "App\\Controllers\\SecurityController::subscribe"
+    },
     "profil": {
         "path": "\/profil",
         "method": "App\\Controllers\\ProfilController::display"
