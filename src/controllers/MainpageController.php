@@ -7,7 +7,7 @@ use Ostyna\Component\Framework\AbstractPageController;
 class MainpageController extends AbstractPageController 
 {
   public function display() {
-    return $this->render('/web/mainpage.html', [
+    return $this->render('/web/index_mainpage.html', [
       'controller' => "Controller MainpageController",
     ]);
   }
