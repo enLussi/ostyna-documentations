@@ -19,6 +19,10 @@
       "path": "\/inscription",
       "method": "App\\Controllers\\SecurityController::subscribe"
     },
+    "logout": {
+      "path": "\/deconnexion",
+      "method": "App\\Controllers\\SecurityController::logout"
+    },
     "profil": {
         "path": "\/profil",
         "method": "App\\Controllers\\ProfilController::display"

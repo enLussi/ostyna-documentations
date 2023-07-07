@@ -1,4 +1,14 @@
-<main>
-  {{ loginForm }}
-  <a href="/inscription">créer un compte</a>
-</main>
+<!DOCTYPE html>
+<html lang="fr">
+{% include _partials/head.html %}
+<body>
+  {% include _partials/navigation.html %}
+
+  <main>
+    {{ loginForm }}
+    <a href="/inscription" class="link-secondary link-underline-opacity-25 link-underline-opacity-75-hover">Créer un compte</a>
+  </main>
+
+  {% include _partials/footer.html %}
+</body>
+</html>

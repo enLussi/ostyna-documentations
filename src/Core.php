@@ -16,7 +16,7 @@ class Core {
   }
 
   public function start(){
-
+    session_start();
     $this->APP = BaseCore::getInstance();
     $this->APP->load();
   
