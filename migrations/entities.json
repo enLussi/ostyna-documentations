@@ -35,13 +35,13 @@
     ],
     "Subscriber": [
         {
-          "Field": "id",
-          "Type": "INT(11)",
-          "Null": "NO",
-          "Key": "MUL",
-          "Default": null,
-          "Extra": "",
-          "RelatedTo": "User"
+            "Field": "id",
+            "Type": "INT(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": "",
+            "RelatedTo": "User"
         },
         {
             "Field": "subscribeat",

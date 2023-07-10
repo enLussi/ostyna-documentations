@@ -92,14 +92,13 @@ class TicketsController extends AbstractPageController
 
     //traitement du formulaire
     if(isset($_POST['version'])) {
-      var_dump($_POST);
       if(isset($_POST['isnew']) && $_POST['isnew'] === "true") {
 
         $title = $_POST['title'];
         $date = date('Y-m-d G:i:s', time());
         $content = preg_quote($_POST['content']);
         $seriousness = intval($_POST['seriousness']);
-        
+
         DatabaseUtils::sql(
           "INSERT INTO tickets (title, date, content, seriousness, author_id, resolver_id, state_id)
           VALUES ('$title', '$date', \"$content\", $seriousness, 3, 3, 1)", respond: true);

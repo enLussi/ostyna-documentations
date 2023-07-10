@@ -57,7 +57,8 @@ sendbutton.onclick = () => {
 
   fetch(window.location.pathname, {
     method: 'POST',
-    body: formData
+    body: formData,
+    mode: 'same-origin',
   })
     .then(response => response.text())
     .then(result => console.log(result));
