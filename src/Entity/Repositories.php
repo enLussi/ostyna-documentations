@@ -69,4 +69,34 @@ class Repositories {
     return new Changelog($changelog);
   }
 
+  public static function getChangelogsByVersion(int $version_id) {
+    $changelogs = DatabaseUtils::sql("SELECT * FROM changelog INNER JOIN version version ON changelog.version_id = version.id WHERE version_id = :id", [
+      "id" => $version_id
+    ], respond: true);
+
+    return $changelogs;
+  }
+
+  //Versions
+  public static function getAllVersions() {
+    $versions = DatabaseUtils::sql("SELECT * FROM version", respond: true);
+
+    return $versions;
+  }
+
+  public static function verifyVersions(int $id) {
+    $exist = count(DatabaseUtils::sql("SELECT * FROM version WHERE id = :id", [
+      "id" => $id
+    ], respond: true)) > 0; 
+    return $exist;
+  }
+
+  public static function getVersion(int $id) {
+    $version = DatabaseUtils::sql("SELECT * FROM version WHERE id =:id", [
+      "id" => $id
+    ], respond: true)[0]['id'];
+
+    return new Version($version);
+  }
+
 }
