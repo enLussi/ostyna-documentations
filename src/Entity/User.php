@@ -49,5 +49,4 @@ class User extends BaseEntity{
 	public function  getPassword(): string { 
 		return $this->password; 
 	}
-  
 }

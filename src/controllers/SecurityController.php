@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Entity\Repositories;
+use App\Traits\PageDisplayTrait;
 use Ostyna\Component\Framework\AbstractPageController;
 use Ostyna\Component\Framework\Form\FormArchitect;
 use Ostyna\Component\Framework\Form\InputEmail;
@@ -10,10 +12,12 @@ use Ostyna\Component\Framework\Form\InputSubmit;
 use Ostyna\Component\Framework\Form\InputText;
 use Ostyna\Component\Framework\Form\Label;
 use Ostyna\Component\Utils\CoreUtils;
-use Ostyna\ORM\Utils\DatabaseUtils;
 
 class SecurityController extends AbstractPageController 
 {
+
+  use PageDisplayTrait;
+
   public function display() {
 
     if(!isset($_SESSION['User'])) {
@@ -35,23 +39,20 @@ class SecurityController extends AbstractPageController
         
       // traitement du formulaire
       if(isset($_POST['username'])) {
-        $stmt = DatabaseUtils::prepare_request(
-          "SELECT * FROM admin INNER JOIN user ON admin.id = user.id WHERE username = :username", 
-          [
-          'username' => $_POST['username']
-          ]);
-        $results = DatabaseUtils::execute_request($stmt);
-        if(password_verify($_POST['password'], $results[0]['password']) && $_POST['username'] === $results[0]['username']){
+
+        $result = Repositories::getAdminFromUsername($_POST['username']);
+        
+        if(password_verify($_POST['password'], $result['password']) && $_POST['username'] === $result['username']){
           $_SESSION['User'] = [
-            'username' => $results[0]['username'],
-            'email' => $results[0]['email'],
-            'roles' => json_decode($results[0]['roles']),
+            'id' => $result['id']
           ];
           CoreUtils::redirect('mainpage', true);
         }
       }
   
       return $this->render('/web/index_security.html', [
+        'title' => 'Connexion',
+        'connexion_button' => $this->connected_user(),
         'loginForm' => $login_form->build(),
       ]);
     }
