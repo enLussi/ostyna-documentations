@@ -59,7 +59,7 @@ class BticketsController extends AbstractPageController
     foreach($all_tickets as $ticket) {
       $ticket_format .="<li><a href='/admin/tickets?id=$ticket[id]'>$ticket[title]</a></li>";
     }
-
+    $ticket_format .= "</ul>";
     
 
     return $this->render('/web/index_btickets.html', [

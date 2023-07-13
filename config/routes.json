@@ -38,5 +38,17 @@
     "bchangelog": {
         "path": "\/admin\/changelogs",
         "method": "App\\Controllers\\BchangelogController::display"
+    },
+    "bchangelogAdd": {
+      "path": "\/admin\/changelogs\/add",
+      "method": "App\\Controllers\\BchangelogController::add"
+    },
+    "bchangelogEdit": {
+      "path": "\/admin\/changelogs\/edit",
+      "method": "App\\Controllers\\BchangelogController::edit"
+    },
+    "bchangelogDelete": {
+      "path": "\/admin\/changelogs\/delete",
+      "method": "App\\Controllers\\BchangelogController::delete"
     }
 }

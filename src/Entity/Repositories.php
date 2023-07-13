@@ -35,7 +35,9 @@ class Repositories {
   }
 
   public static function verifyTicket(int $id) {
-    $exist = count(DatabaseUtils::sql("SELECT * FROM tickets", respond: true)) > 0; 
+    $exist = count(DatabaseUtils::sql("SELECT * FROM tickets WHERE id = :id", [
+      "id" => $id
+    ], respond: true)) > 0; 
     return $exist;
   }
 
@@ -45,6 +47,26 @@ class Repositories {
     return $state;
   }
 
-  //
+  //Changelogs
+  public static function getAllChangelogs() {
+    $changelogs = DatabaseUtils::sql("SELECT * FROM changelog", respond: true);
+
+    return $changelogs;
+  }
+
+  public static function verifyChangelogs(int $id) {
+    $exist = count(DatabaseUtils::sql("SELECT * FROM changelog WHERE id = :id", [
+      "id" => $id
+    ], respond: true)) > 0; 
+    return $exist;
+  }
+
+  public static function getChangelog(int $id) {
+    $changelog = DatabaseUtils::sql("SELECT * FROM changelog WHERE id =:id", [
+      "id" => $id
+    ], respond: true)[0]['id'];
+
+    return new Changelog($changelog);
+  }
 
 }
