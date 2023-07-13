@@ -55,12 +55,12 @@ sendbutton.onclick = () => {
     });
   }
 
-  fetch(window.location.pathname, {
+  fetch(window.location.href, {
     method: 'POST',
     body: formData,
     mode: 'same-origin',
   })
     .then(response => response.text())
-    .then(result => console.log(result));
+    .then(result => window.location.href = "/tickets");
 
 }

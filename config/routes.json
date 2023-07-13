@@ -36,7 +36,7 @@
         "method": "App\\Controllers\\BticketsController::display"
     },
     "bchangelog": {
-        "path": "\/admin\/changelog",
+        "path": "\/admin\/changelogs",
         "method": "App\\Controllers\\BchangelogController::display"
     }
 }
