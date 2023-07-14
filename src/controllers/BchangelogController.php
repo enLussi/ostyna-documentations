@@ -23,9 +23,29 @@ class BchangelogController extends AbstractPageController
     if(isset($_GET['id']) && Repositories::verifyChangelogs($_GET['id'])) {
       $changelog = Repositories::getChangelog($_GET['id']);
 
+      $blocks = json_decode($changelog->getContent(), true)['blocks'];
+      // dd($blocks);
+      $content = "<div>";
+      foreach($blocks as $block) {
+
+        switch($block['type']){
+          case "header":
+            $level = $block['data']['level'];
+            $text = $block['data']['text'];
+            $content .= "<h$level>$text</h$level>";
+            break;
+          case "paragraph":
+            $text = $block['data']['text'];
+            $content .= "<p>$text</p>";
+        }
+
+      }
+      $content .= "</div>";
+
       return $this->render('/web/index_bchangelog.html', [
         'title' => 'Changelogs',
         'changelog' => $changelog,
+        'content' => $content,
       ]);
     }
 
@@ -51,7 +71,7 @@ class BchangelogController extends AbstractPageController
       CoreUtils::redirect('mainpage');
     }
 
-    $version_form = new FormArchitect();
+    $version_form = new FormArchitect(id: "newChangelog");
     $version_form
       ->add(new InputText('version', new Label(content: 'Nom de la version', HTMLclass: 'form-label'), attributes: [
         "class" => "form-control"
@@ -59,30 +79,33 @@ class BchangelogController extends AbstractPageController
       ->add(new InputText('link', new Label(content: 'Lien de téléchargement', HTMLclass: "form-label"), attributes: [
         "class" => "form-control"
       ]))
-      ->add(new Textarea('content', new Label(content: 'Changements', HTMLclass: "form-label"), attributes: [
-        "class" => "form-control"
-      ]))
-      ->add(new InputSubmit(value: "Envoyer", attributes: [
-        "class" => "btn btn-primary"
-      ]));
+      // ->add(new Textarea('content', new Label(content: 'Changements', HTMLclass: "form-label"), attributes: [
+      //   "class" => "form-control"
+      // ]))
+      // ->add(new InputSubmit(value: "Envoyer", attributes: [
+      //   "class" => "btn btn-primary"
+      // ]))
       ;
+    
     
     if(isset($_POST['version'])) {
 
       $link = $_POST['link'];
       $name = $_POST['version'];
-
       $version_id = DatabaseUtils::sql(
         "INSERT INTO version (link, name, issupported) VALUES ('$link', '$name', 1)", respond: true
       );
 
       $date = date('Y-m-d G:i:s', time());
-      $content = preg_quote($_POST['content']);
+      $content = $_POST['content'];
       $author_id = $this->get_user()->getId();
 
-
       DatabaseUtils::sql(
-        "INSERT INTO changelog (date, content, version_id, author_id) VALUES ('$date', \"$content\", $version_id, $author_id)"
+        "INSERT INTO changelog (date, content, version_id, author_id) VALUES (:date, :content, $version_id, $author_id)",
+        [
+          "date" => $date,
+          "content" => $content,
+        ]
       );
 
       return json_encode('ok');

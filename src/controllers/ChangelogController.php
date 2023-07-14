@@ -15,17 +15,29 @@ class ChangelogController extends AbstractPageController
     if(isset($_GET['id']) && Repositories::verifyVersions($_GET['id'])) {
       $version = Repositories::getVersion($_GET['id']);
       $changelogs = Repositories::getChangelogsByVersion($_GET['id']);
+      $blocks = json_decode($changelogs[0]['content'], true)['blocks'];
+      // dd($blocks);
+      $content = "<div>";
+      foreach($blocks as $block) {
 
-      $changelogs_format = "";
+        switch($block['type']){
+          case "header":
+            $level = $block['data']['level'];
+            $text = $block['data']['text'];
+            $content .= "<h$level>$text</h$level>";
+            break;
+          case "paragraph":
+            $text = $block['data']['text'];
+            $content .= "<p>$text</p>";
+        }
 
-      foreach($changelogs as $changelog) {
-        $changelogs_format .="<div><p>$changelog[date]</p><p>$changelog[content]</p></div>";
       }
+      $content .= "</div>";
 
       return $this->render('/web/index_changelog.html', [
         'title' => "Changelogs ".$version->getName(),
         'version' => $version->getName(),
-        'changelogs' => $changelogs_format,
+        'content' => $content,
         'connexion_button' => $this->connected_user(),
       ]);
     }
