@@ -1,0 +1,98 @@
+<main class="py-4">
+  <h1 class="text-center py-3">Documentation Ostyna</h1>
+  <section class="block border-top m-auto py-3">
+    <h2>Framework Ostyna</h2>
+    <h3>Mise en place du projet</h3>
+    <p>
+      Télécharger la dernière version stable (à ce jour sur la branche dev) et initialiser un dépot git. Installer le package de base nécessaire:
+    </p>
+    <pre>composer require ostyna/core</pre>
+    <p>
+      De la même manière et selon vos besoins, vous pouvez installer d'autres dépendances:
+    </p>
+    <pre>composer require ostyna/orm<br>composer require ostyna/sing</pre>
+    <p>
+      Une fois vos dépendances installer, dupliquer et renommer le dossier .env en .env.local en complétant avec les informations de votre base de données si vous en utilisez une. Le framework ne créera pas la base de données automatiquement.
+    </p>
+  </section>
+  <section class="block border-top m-auto py-3">
+    <h2>Framework Ostyna : Core</h2>
+    <h3>1. Système de Routing</h3>
+    <p>Les routes sont décrites et stockées dans le fichier routes.json du dossier config et se présente sous la forme :</p>
+    <pre>"mainpage": {
+      "path": "\/",
+      "method": "App\\Controllers\\MainpageController::display"
+  }</pre>
+    <p>où path correspond à l'url utilisée pour la page et method à la méthode du controller utilisé pour la page. Une route est généré dans ce fichier automatiquement lors de la création d'un controller avec la commande associé.</p>
+    <pre>php bin/controller controller --new</pre>
+
+    <h3>2. Les Controllers</h3>
+    <p>Par défaut, à la génération de la classe de controller, une méthode display est créée avec une valeur de retour contenant le code html. Au besoin, vous pouvez créer d'autres méthodes et les associés à une route dans le fichier routes.json du dossier config.</p>
+    <p>Un controller hérite de la classe abstraite AbstractPageController avec la méthode render. Cette méthode demande deux paramètres : le chemin vers le template ou le fichier html et un tableau de paramètres utile si vous utilisez le moteur de template associé au framework (Sing)</p>
+
+    <h3>3. Les Formulaires</h3>
+    <p>Un formulaire est instancié avec la classe Ostyna\Component\Framework\Form\FormArchitect. Une fois instancié, la méthode add permet d'ajouter des éléments de formulaire. Cette méthode demande un paramètre: un FormElement</p>
+    <ul>
+      <li>InputCheckbox</li>
+      <li>InputColor</li>
+      <li>InputDate</li>
+      <li>InputDateTime</li>
+      <li>InputEmail</li>
+      <li>InputFile</li>
+      <li>InputNumber</li>
+      <li>InputPassword</li>
+      <li>InputRadio</li>
+      <li>InputRadio</li>
+      <li>InputSearch</li>
+      <li>InputSubmit</li>
+      <li>InputTel</li>
+      <li>InputTime</li>
+      <li>Select + Option</li>
+      <li>Textarea</li>
+    </ul>
+    <p>Dans la majorité des cas, un FormElement demande: un paramètre name correspondant à l'attribut name de la balise html, un objet Label, et un tableau d'attributs correspondant aux autres attributs html.</p>
+    <p>Avant de pouvoir être envoyé à la vue, le formulaire doit être formatté en utilisant la méthode build.</p>
+    <pre>  return $this->render('/web/index.html', [
+      'form' => $form->build(),
+    ]);</pre>
+  </section>
+  <section class="block border-top m-auto py-3">
+    <h2>Framework Ostyna : ORM</h2>
+    <h3>1. Création des entités</h3>
+    <p>Les données des entitées sont stockées dans le fichier entities.json du dossier migrations. Pour simplifier la tâches de l'utilisateur, il est possible de généré automatiquement ce fichier avec la commande.</p>
+    <pre>php bin/console table --new</pre>
+    <p>Des informations vous seront demandé concernant la table et les propriétés la concernant.</p>
+    <p>Il est possible de supprimer ou ajouter des propriétés après l'exécution de la première commande.</p>
+    <pre>php bin/console table --modify</pre>
+    <p>Pour supprimer une table entière:</p>
+    <pre>php bin/console table --remove</pre>
+    <p>Une fois toutes vos tables créer, il est possible de générer le code sql permettant d'appliquer les modifications sur la base de données.</p>
+    <pre>php bin/console table --prepare</pre>
+    <p>Cette commande générera un fichier de classe final héritant de Ostyna\ORM\Migrations\AbstractMigrations dans le dossier migrations avec une méthode upgrade contenant le code sql nécessaire pour appliquer les changements basé sur le fichier entities.json du dossier migrations.</p>
+    <p>Pour envoyer ces changements à la base de données:</p>
+    <pre>php bin/console table --migrate</pre>
+    <p>Il est possible de générer les classes d'entité de chaque table une par une.</p>
+    <pre>php bin/console table --generate=<ClasseName></pre>
+
+    <h3>2. DataSupplies</h3>
+    <p>Les tableaux générés dans la base de données sont vides. Ils peuvent être rempli via une classe "Supply".</p>
+    <pre>php bin/console supply --unique=<EntityName></pre>
+    <p>Il faut utiliser le nom de l'entité comme vous l'avez défini lors de sa création.</p>
+  </section>
+  <section class="block border-top m-auto py-3">
+    <h2>Framework Ostyna: Sing</h2>
+    <p>Sing est moteur de template basique (avec peu de fonctionnalité) Dans l'état, il peut simplement remplacer des variables par leur valeur et récupérer le contenu d'un autre fichier de template</p>
+    <h3>1. Les Blocs</h3>
+    <p>Un blocs correspond à un fichier de template. Il peut être inclut dans un autre fichier de la manière suivante:</p>
+    <pre>{% include path/from/templates/folder %}</pre>
+    <h3>2. Les Valeurs</h3>
+    <p>Les valeurs envoyées depuis la méthode render du controller peuvent être utilisées dans un fichier de template.</p>
+    <pre>{{ data }}</pre>
+    <p>La valeur correspondant à la clé data du tableau de paramètres de la méthode render sera insérer à la place.</p>
+    <p>Il est possible d'utiliser des tableaux à une seule dimension.</p>
+    <pre>{{ array.value }}</pre>
+    <p>ou des objets avec une méthode "get" défini.</p>
+    <pre>{{ object.id }}</pre>
+    <p>utilisera la méthode getId de la classe attribuer à la clé object pour récupérer la valeur.</p>
+  </section>
+</main>

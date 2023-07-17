@@ -38,7 +38,7 @@
             "Field": "id",
             "Type": "INT(11)",
             "Null": "NO",
-            "Key": "MUL",
+            "Key": "PRI",
             "Default": null,
             "Extra": "",
             "RelatedTo": "User"
@@ -57,7 +57,7 @@
             "Field": "id",
             "Type": "INT(11)",
             "Null": "NO",
-            "Key": "MUL",
+            "Key": "PRI",
             "Default": null,
             "Extra": "",
             "RelatedTo": "User"
@@ -137,7 +137,7 @@
             "RelatedTo": ""
         },
         {
-            "Field": "author",
+            "Field": "author_id",
             "Type": "INT(11)",
             "Null": "NO",
             "Key": "MUL",
@@ -146,7 +146,7 @@
             "RelatedTo": "Subscriber"
         },
         {
-            "Field": "resolver",
+            "Field": "resolver_id",
             "Type": "INT(11)",
             "Null": "NO",
             "Key": "MUL",
@@ -155,7 +155,7 @@
             "RelatedTo": "Admin"
         },
         {
-            "Field": "state",
+            "Field": "state_id",
             "Type": "INT(11)",
             "Null": "NO",
             "Key": "MUL",
@@ -193,7 +193,7 @@
         },
         {
             "Field": "issupported",
-            "Type": "BOOL",
+            "Type": "TINYINT(1)",
             "Null": "NO",
             "Key": "",
             "Default": null,
@@ -229,7 +229,7 @@
             "RelatedTo": ""
         },
         {
-            "Field": "version",
+            "Field": "version_id",
             "Type": "INT(11)",
             "Null": "NO",
             "Key": "MUL",
@@ -238,7 +238,7 @@
             "RelatedTo": "Version"
         },
         {
-            "Field": "author",
+            "Field": "author_id",
             "Type": "INT(11)",
             "Null": "NO",
             "Key": "MUL",
@@ -275,7 +275,7 @@
             "RelatedTo": ""
         },
         {
-            "Field": "ticket",
+            "Field": "ticket_id",
             "Type": "INT(11)",
             "Null": "NO",
             "Key": "MUL",
@@ -284,7 +284,7 @@
             "RelatedTo": "Tickets"
         },
         {
-            "Field": "author",
+            "Field": "author_id",
             "Type": "INT(11)",
             "Null": "NO",
             "Key": "MUL",
