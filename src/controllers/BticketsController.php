@@ -54,10 +54,13 @@ class BticketsController extends AbstractPageController
     }
 
     $all_tickets = Repositories::getAllTickets();
-    $ticket_format = "<ul>";
+    $ticket_format = "<ul class='list-group'>";
 
     foreach($all_tickets as $ticket) {
-      $ticket_format .="<li><a href='/admin/tickets?id=$ticket[id]'>$ticket[title]</a></li>";
+      $ticket_format .=
+      "<li class='list-group-item'>
+      <a class='link-underline link-underline-opacity-0' href='/admin/tickets?id=$ticket[id]'>$ticket[title]</a>
+      </li>";
     }
     $ticket_format .= "</ul>";
     

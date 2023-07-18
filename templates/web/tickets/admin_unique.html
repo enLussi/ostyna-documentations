@@ -1,3 +1,10 @@
-<p>{{ ticket.title }}</p>
-<p>{{ ticket.content }}</p>
-{{ stateForm }}
+<main class="py-4">
+  <h1 class="text-center">{{ ticket.title }}</h1>
+  <section class="block border-top m-auto py-3">
+    <p>{{ ticket.content }}</p>
+    <div style="width: fit-content;">
+      {{ stateForm }}
+    </div>
+  </section>
+</main>
+

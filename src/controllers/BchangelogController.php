@@ -50,10 +50,15 @@ class BchangelogController extends AbstractPageController
     }
 
     $all_changelogs = Repositories::getAllChangelogs();
-    $changelog_format = "<ul>";
+    $changelog_format = "<ul class='list-group'>";
 
     foreach($all_changelogs as $changelog) {
-      $changelog_format .="<li><a href='/admin/changelogs?id=$changelog[id]'>$changelog[version_id]</a></li>";
+      $version = Repositories::getVersion($changelog['version_id']);
+
+      $changelog_format .=
+      "<li class='list-group-item'>
+      <a class='link-underline link-underline-opacity-0' href='/admin/changelogs?id=$changelog[id]'>".$version->getName()."</a>
+      </li>";
     }
     $changelog_format .= "</ul>";
 
