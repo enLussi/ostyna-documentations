@@ -1,10 +1,12 @@
-<main class="container">
-  <h2 class="text-center">Rapport de bug</h2>
-  <section class="col col-lg-6 mx-auto">
-  {{ ticketsForms.version }}
-  {{ ticketsForms.list }}
-  {{ ticketsForms.ticket }}
-  {{ ticketsForms.remark }}
-  <button class="btn btn-primary" id="sendbutton">Envoyer</button>
+<main class="py-4">
+  <h1 class="text-center">Rapport de bug</h1>
+  <section class="block border-top m-auto py-3">
+    <div class="col col-lg-6 mx-auto gap-3">
+      {{ ticketsForms.version }}
+      {{ ticketsForms.list }}
+      {{ ticketsForms.ticket }}
+      {{ ticketsForms.remark }}
+      <button class="btn btn-primary mt-3" id="sendbutton">Envoyer</button>
+      </div>
   </section>
 </main>

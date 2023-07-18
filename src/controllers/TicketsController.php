@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Entity\Repositories;
 use App\Traits\PageDisplayTrait;
 use DateTime;
 use Ostyna\Component\Framework\AbstractPageController;
@@ -20,40 +21,46 @@ class TicketsController extends AbstractPageController
 
   public function display() {
 
+    //Get all versions available in the database
+    $all_versions = Repositories::getAllVersions();
+    $versions_options = [];
+      
+      foreach($all_versions as $version) {
+        array_push($versions_options, new Option(attributes: [
+          'value' => strval($version['id'])
+        ], content: $version['name']));
+      }
+    array_unshift($versions_options, new Option([
+      'value' => ''
+    ], content: ""));
 
+    //Get all tickets available in the database
+    $all_tickets = Repositories::getAllTickets();
+    $tickets_options = [];
+      
+    foreach($all_tickets as $ticket) {
+      array_push($tickets_options, new Option(attributes: [
+        'value' => strval($ticket['id'])
+      ], content: $ticket['title']));
+    }
+    array_unshift($tickets_options, new Option([
+      'value' => ''
+    ], content: ""));
+
+    //Set up forms
     $version_form = new FormArchitect(id: "version");
     $version_form
-      ->add(new Select("version-select", new Label(content: "Sélectionner une version", HTMLclass: "form-label"), options: [
-        new Option([
-          'value' => ''
-        ], content: ""),
-        new Option([
-          'value' => '1'
-        ], content: "dev"),
-        new Option([
-          'value' => '2'
-        ], content: "1.0 stable")
-      ], attributes:[
-        "class" => 'form-control',
-        "id" => "version-select"
+      ->add(new Select("version-select", new Label(content: "Sélectionner une version", HTMLclass: "form-label"), 
+      options: $versions_options, attributes: [
+        "class" => "form-select"
       ] ));
     
     $tickets_form = new FormArchitect(id: "list");
     $tickets_form
-      ->add(new Select("tickets", new Label(content: "Sélectionner un ticket similaire", HTMLclass: "form-label"), options:[
-        new Option(attributes: [
-          'value' => ""
-        ], content: ""),
-        new Option(attributes: [
-          'value' => "1"
-        ], content: "bug sur l'affichage des arrays."),
-        new Option(attributes: [
-          'value' => "2"
-        ], content: "ajout d'une logique au template (if, for)"),
-      ], attributes:[
-        "class" => "form-control",
-        "id" => "tickets",
-      ] ))
+      ->add(new Select("tickets", new Label(content: "Sélectionner un ticket similaire", HTMLclass: "form-label"), 
+      options: $tickets_options , attributes: [
+        "class" => "form-select"
+      ]))
       ->add(new InputCheckbox('new_ticket', new Label(content: "Créer un nouveau ticket"), attributes: [
         'required' => 'false',
         "class" => 'form-check-input',

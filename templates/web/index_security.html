@@ -4,9 +4,14 @@
 <body>
   {% include _partials/navigation.html %}
 
-  <main>
-    {{ loginForm }}
-    <a href="/inscription" class="link-secondary link-underline-opacity-25 link-underline-opacity-75-hover">Créer un compte</a>
+  <main class="py-4">
+    <h1 class="text-center">Connexion</h1>
+    <section class="block border-top m-auto py-3">
+      <div class="col col-lg-6 mx-auto">
+        {{ loginForm }}
+        <a href="/inscription" class="link-secondary link-underline-opacity-25 link-underline-opacity-75-hover">Créer un compte</a>
+      </div>
+    </section>
   </main>
 
   {% include _partials/footer.html %}

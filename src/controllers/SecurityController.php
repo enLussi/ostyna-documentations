@@ -34,7 +34,7 @@ class SecurityController extends AbstractPageController
           "class" => "form-control"
         ]))
         ->add(new InputSubmit(value: "Envoyer", attributes: [
-          "class" => "btn btn-primary"
+          "class" => "btn btn-primary mt-3"
         ]));
         
       // traitement du formulaire
@@ -77,12 +77,14 @@ class SecurityController extends AbstractPageController
         "class" => "form-control"
       ]))
       ->add(new InputSubmit(value: "Envoyer", attributes: [
-        "class" => "btn btn-primary"
+        "class" => "btn btn-primary mt-3"
       ]));
 
       // traitement du formulaire
 
     return $this->render('/web/index_subscription.html', [
+      'title' => 'Inscription',
+      'connexion_button' => $this->connected_user(),
       'subForm' => $sub_form->build(),
     ]);
   }

@@ -43,10 +43,13 @@ class ChangelogController extends AbstractPageController
     }
 
     $versions = Repositories::getAllVersions();
-    $version_format = "<ul>";
+    $version_format = "<ul class='list-group'>";
 
     foreach($versions as $version) {
-      $version_format .="<li><a href='/changelog?id=$version[id]'>$version[name]</a></li>";
+      $version_format .=
+      "<li class='list-group-item'>
+      <a class='link-underline link-underline-opacity-0' href='/changelog?id=$version[id]'>$version[name]</a>
+      </li>";
     }
     $version_format .= "</ul>";
 

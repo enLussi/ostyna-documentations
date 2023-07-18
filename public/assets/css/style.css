@@ -6,6 +6,10 @@
   font-family: 'Nunito Sans', sans-serif;
 }
 
+main {
+  min-height: 80vh;
+}
+
 .paragraph {
   width: clamp(350px, 95% ,550px);
 }
