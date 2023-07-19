@@ -23,8 +23,7 @@ formButton.onclick = () => {
     })
       .then(response => response.text())
       .then(result => 
-        // window.location.href = "/admin/changelogs"
-        console.log('test')
+        window.location.href = "/admin/changelogs"
       );
   }).catch((error) => {
     console.alert('Saving failed: ', error)

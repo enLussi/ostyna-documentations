@@ -16,7 +16,29 @@ class Repositories {
       ]);
     $results = DatabaseUtils::execute_request($stmt);
 
-    return $results[0];
+    return isset($results[0]) ? $results[0] : false;
+  }
+
+  //Users
+  public static function getUserFromUsername (string $username) {
+    $stmt = DatabaseUtils::prepare_request(
+      "SELECT * FROM user WHERE username = :username", 
+      [
+      'username' => $username
+      ]);
+    $results = DatabaseUtils::execute_request($stmt);
+
+    return isset($results[0]) ? $results[0] : false;
+  }
+  public static function getUserFromEmail (string $email) {
+    $stmt = DatabaseUtils::prepare_request(
+      "SELECT * FROM user WHERE email = :email", 
+      [
+      'email' => $email
+      ]);
+    $results = DatabaseUtils::execute_request($stmt);
+
+    return isset($results[0]) ? $results[0] : false;
   }
 
   // Tickets

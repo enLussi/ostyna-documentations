@@ -118,7 +118,6 @@ class TicketsController extends AbstractPageController
           "INSERT INTO remark (content, date, ticket_id, author_id)
           VALUES (\"$content\", '$date', 2, 3)");
       }
-      // $stmt = DatabaseUtils::prepare_request('INSERT')
 
       return json_encode('ok');
     }
