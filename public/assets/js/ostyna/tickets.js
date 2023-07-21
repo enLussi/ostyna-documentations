@@ -37,6 +37,7 @@ versionForm.onchange = () => {
 listForm.onchange = () => {
   if(document.getElementById('tickets').value.length > 0) {
     listForm.setAttribute("hidden", true);
+    ticket = document.getElementById('tickets').value;
     remarkForm.removeAttribute("hidden");
     sendbutton.removeAttribute("hidden");
 
@@ -68,6 +69,7 @@ sendbutton.onclick = () => {
       }
     });
   } else {
+    formData.append("ticket", ticket);
     let remarkdata = new FormData(remarkForm);
     remarkdata.forEach((data, index) => {
       if(typeof(data) == "string" && data !== "") {

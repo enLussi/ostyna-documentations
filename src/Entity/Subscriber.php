@@ -15,6 +15,8 @@ class Subscriber extends User{
       $entity = DatabaseUtils::get_entity($identifier, 'subscriber');
     	$this->id = $entity['id'];
 			$this->subscribeat = new DateTimeImmutable($entity['subscribeat']);
+
+      parent::__construct($identifier);
     }
   }
 

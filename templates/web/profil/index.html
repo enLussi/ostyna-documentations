@@ -1,0 +1,32 @@
+<main class="py-4">
+  <section class="block border-top m-auto py-3 px-5">
+    <h2 class="text-center py-3">Vos Informations</h2>
+    <p>Vous êtes inscrit depuis : <span class="text-center bg-primary-subtle rounded p-1">{{ user.subscribeat format('d/m/Y') }}</span></p>
+    <p>Nom d'utilisateur : <span class="text-center bg-primary-subtle rounded p-1">{{ user.username }}</span></p>
+    <p>Email : <span class="text-center bg-primary-subtle rounded p-1">{{ user.email }}</span></p>
+  </section>
+
+
+  <section class="block border-top m-auto py-3 px-5">
+    <h2 class="text-center py-3">Vos Tickets</h2>
+    <ul class="list-group">
+      {{ for ticket in tickets }}
+      <li class="list-group-item">
+          <h3>{{ ticket.title }} <span 
+            class="badge 
+            bg-{{ if ticket.state_id == 1 }}dark-subtle{{ endif }}{{ if ticket.state_id == 2 }}info{{ endif }}{{ if ticket.state_id == 3 }}success{{ endif }}">
+            {{ ticket.state_label }}</span>
+            <span 
+            class="badge 
+            bg-{{ if ticket.seriousness == 1 }}success{{ endif }}{{ if ticket.seriousness == 2 }}warning{{ endif }}{{ if ticket.seriousness == 3 }}danger{{ endif }}">
+            {{ if ticket.seriousness == 1 }}faible{{ endif }}{{ if ticket.seriousness == 2 }}important{{ endif }}{{ if ticket.seriousness == 3 }}urgent{{ endif }}</span></h3>
+          <p>{{ ticket.content }}</p>
+      </li>
+      {{ endfor }}
+    </ul>
+  </section>
+
+
+
+</main>
+

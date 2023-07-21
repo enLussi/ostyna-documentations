@@ -105,18 +105,28 @@ class TicketsController extends AbstractPageController
         $date = date('Y-m-d G:i:s', time());
         $content = preg_quote($_POST['content']);
         $seriousness = intval($_POST['seriousness']);
-
+        if(!$this->get_user()) {
+          $author = 1;
+        } else {
+          $author = $this->get_user()->getId();
+        }
         DatabaseUtils::sql(
           "INSERT INTO tickets (title, date, content, seriousness, author_id, resolver_id, state_id)
-          VALUES ('$title', '$date', \"$content\", $seriousness, 3, 3, 1)", respond: true);
+          VALUES ('$title', '$date', \"$content\", $seriousness, $author, 3, 1)", respond: true);
 
       } elseif(isset($_POST['isnew']) && $_POST['isnew'] === "false") {
 
         $content = preg_quote($_POST['remark']);
         $date = date('Y-m-d G:i:s', time());
+        $ticket = $_POST['ticket'];
+        if(!$this->get_user()) {
+          $author = 1;
+        } else {
+          $author = $this->get_user()->getId();
+        }
         DatabaseUtils::sql(
           "INSERT INTO remark (content, date, ticket_id, author_id)
-          VALUES (\"$content\", '$date', 2, 3)");
+          VALUES (\"$content\", '$date', $ticket, $author)");
       }
 
       return json_encode('ok');

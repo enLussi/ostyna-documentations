@@ -56,6 +56,14 @@ class Repositories {
     return new Tickets($ticket);
   }
 
+  public static function getTicketsFromUser(int $id) {
+    $ticket = DatabaseUtils::sql("SELECT tickets.id,title,date,content,seriousness,state_id FROM tickets INNER JOIN user ON tickets.author_id = user.id WHERE user.id =:id", [
+      "id" => $id
+    ], respond: true);
+
+    return $ticket;
+  }
+
   public static function verifyTicket(int $id) {
     $exist = count(DatabaseUtils::sql("SELECT * FROM tickets WHERE id = :id", [
       "id" => $id
@@ -66,6 +74,13 @@ class Repositories {
   //States
   public static function getAllStates() {
     $state = DatabaseUtils::get_entities('state');
+    return $state;
+  }
+
+  public static function getStatesByTickets(int $id) {
+    $state = DatabaseUtils::sql("SELECT name FROM state INNER JOIN tickets ON tickets.state_id = state.id WHERE tickets.id =:id", [
+      "id" => $id
+    ], respond: true)[0];
     return $state;
   }
 

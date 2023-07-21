@@ -106,6 +106,8 @@ class SecurityController extends AbstractPageController
               $_SESSION['User'] = [
                 'id' => $id
               ];
+
+              session_regenerate_id();
             }
           }
 
