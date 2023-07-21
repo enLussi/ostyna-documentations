@@ -1,6 +1,15 @@
 <main class="py-4">
   <h1 class="text-center">Rapport de bug</h1>
   <section class="block border-top m-auto py-3">
+
+    <div class="loading">
+      <div class="bg-percentage">
+        <div class="percentage" id="percentage" data-perc="0"></div>
+      </div>
+      <div id="indicator"></div>
+    </div>
+
+
     <div class="col col-lg-6 mx-auto gap-3">
       {{ ticketsForms.version }}
       {{ ticketsForms.list }}

@@ -44,3 +44,55 @@ section.block {
   width: 95%;
   max-width: 1000px;
 }
+
+.loading {
+  position: relative;
+}
+
+.bg-percentage {
+  width: 80%;
+  height: 10px;
+  background-color: aliceblue;
+
+  border-radius: 5px;
+  margin: 30px auto 50px auto;
+
+  overflow: hidden;
+
+}
+
+.loading .bg-percentage .percentage {
+  height: 10px;
+  width: 0;
+  background-color: #ed9403;
+  transition: all 0.5s ease-in;
+}
+
+.loading #indicator {
+  position: absolute;
+
+  color: #F0E8DA;
+  
+  top: 20px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.indicate {
+  width: 70px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: #ed9403;
+  
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.indicate p {
+  margin: 0;
+  padding: 0;
+}
