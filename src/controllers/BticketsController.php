@@ -43,7 +43,7 @@ class BticketsController extends AbstractPageController
           "UPDATE tickets SET state_id = $_POST[value]  WHERE id = :id", [
             "id" => strval($_GET['id'])
           ]);
-        return "prout";
+        return "ok";
       }
 
       return $this->render('/web/index_bticket.html', [
@@ -54,20 +54,15 @@ class BticketsController extends AbstractPageController
     }
 
     $all_tickets = Repositories::getAllTickets();
-    $ticket_format = "<ul class='list-group'>";
 
-    foreach($all_tickets as $ticket) {
-      $ticket_format .=
-      "<li class='list-group-item'>
-      <a class='link-underline link-underline-opacity-0' href='/admin/tickets?id=$ticket[id]'>$ticket[title]</a>
-      </li>";
+    foreach($all_tickets as $index => $ticket) {
+      $all_tickets[$index]['state_label'] = Repositories::getStatesByTickets($ticket['id'])['name'];
     }
-    $ticket_format .= "</ul>";
-    
+    $ticket_format = "<ul class='list-group'>";
 
     return $this->render('/web/index_btickets.html', [
       'title' => 'Gestion des Tickets',
-      'tickets' => $ticket_format,
+      'tickets' => $all_tickets,
     ]);
   }
 }

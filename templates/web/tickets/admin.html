@@ -1,6 +1,23 @@
 <main class="py-4">
   <h1 class="text-center">Tickets</h1>
   <section class="block border-top m-auto py-3">
-    {{ tickets }}
+    <ul class="list-group">
+      {{ for ticket in tickets }}
+      <li class='list-group-item d-flex flex-row justify-content-between'>
+        <a class='link-underline link-dark link-underline-opacity-0 d-inline' href='/admin/tickets?id={{ ticket.id }}'>
+          {{ ticket.title }}
+        </a><p class="text-end p-0 m-0 ">
+          <span 
+            class="badge 
+            bg-{{ if ticket.state_id == 1 }}dark-subtle{{ endif }}{{ if ticket.state_id == 2 }}info{{ endif }}{{ if ticket.state_id == 3 }}success{{ endif }}">
+            {{ ticket.state_label }}</span>
+          <span 
+            class="badge 
+            bg-{{ if ticket.seriousness == 1 }}success{{ endif }}{{ if ticket.seriousness == 2 }}warning{{ endif }}{{ if ticket.seriousness == 3 }}danger{{ endif }}">
+            {{ if ticket.seriousness == 1 }}faible{{ endif }}{{ if ticket.seriousness == 2 }}important{{ endif }}{{ if ticket.seriousness == 3 }}urgent{{ endif }}</span>
+          </p> 
+      </li>
+      {{ endfor }}
+    </ul>
   </section>
 </main>
