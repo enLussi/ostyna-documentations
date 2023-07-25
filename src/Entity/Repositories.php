@@ -19,6 +19,14 @@ class Repositories {
     return isset($results[0]) ? $results[0] : false;
   }
 
+  public static function getAllAdmin () {
+    $stmt = DatabaseUtils::prepare_request(
+      "SELECT * FROM admin INNER JOIN user ON admin.id = user.id");
+    $results = DatabaseUtils::execute_request($stmt);
+
+    return !empty($results) ? $results : false;
+  }
+
   //Users
   public static function getUserFromUsername (string $username) {
     $stmt = DatabaseUtils::prepare_request(

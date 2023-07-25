@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Entity\Repositories;
 use App\Traits\PageDisplayTrait;
 use DateTime;
+use Ostyna\Component\Error\FatalException;
 use Ostyna\Component\Framework\AbstractPageController;
 use Ostyna\Component\Framework\Form\FormArchitect;
 use Ostyna\Component\Framework\Form\InputCheckbox;
@@ -106,10 +107,15 @@ class TicketsController extends AbstractPageController
         $content = preg_quote($_POST['content']);
         $seriousness = intval($_POST['seriousness']);
         if(!$this->get_user()) {
-          $author = 1;
+          $author = Repositories::getAllAdmin()[0]['id'];
         } else {
           $author = $this->get_user()->getId();
         }
+
+        if($author === false) {
+          throw new FatalException('Une erreur est survenue lors de l\'enregistrement dans la base de données', 0);
+        }
+
         DatabaseUtils::sql(
           "INSERT INTO tickets (title, date, content, seriousness, author_id, resolver_id, state_id)
           VALUES ('$title', '$date', \"$content\", $seriousness, $author, 3, 1)", respond: true);

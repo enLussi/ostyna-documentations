@@ -9,6 +9,12 @@
       <a class="nav-link text-light" href="/changelog">Changelogs</a>
       <a class="nav-link text-light" href="/tickets">Rapporter un bug</a>
     </div>
-    <a class="nav-link text-light" href="{{ connexion_button.link }}">{{ connexion_button.label }}</a>
+    <div>
+      <a class="nav-link text-light" href="{{ connexion_button.link }}">{{ connexion_button.label }}</a>
+      {{ if connexion_button.connected == "true" }}
+      <a class="nav-link text-light" href="/deconnexion">Deconnexion</a>
+      {{ endif }}
+    </div>
+    
   </div>
 </nav>

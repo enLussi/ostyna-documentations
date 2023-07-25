@@ -22,6 +22,7 @@ class BchangelogController extends AbstractPageController
 
     if(isset($_GET['id']) && Repositories::verifyChangelogs($_GET['id'])) {
       $changelog = Repositories::getChangelog($_GET['id']);
+      $version = Repositories::getVersion($changelog->getVersion());
 
       $blocks = json_decode($changelog->getContent(), true)['blocks'];
       // dd($blocks);
@@ -43,8 +44,8 @@ class BchangelogController extends AbstractPageController
       $content .= "</div>";
 
       return $this->render('/web/index_bchangelog.html', [
-        'title' => 'Changelogs',
-        'changelog' => $changelog,
+        'title' => "Changelogs ".$version->getName(),
+        'version' => $version->getName(),
         'content' => $content,
       ]);
     }
