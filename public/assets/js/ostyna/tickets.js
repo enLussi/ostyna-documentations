@@ -9,8 +9,6 @@ const indicator = document.getElementById('indicator');
 
 loadingBar.style.width = loadingBar.dataset.perc+"%";
 
-console.log(indicator);
-
 let version = null;
 let isnew = false;
 
@@ -91,8 +89,9 @@ sendbutton.onclick = () => {
     .then(response => response.text())
     .then(result => {
       addPercentage(25);
-
+      console.log(result);
       setTimeout(function(){
+        
         window.location.href = "/tickets"
       }, 5000)
     })
@@ -107,7 +106,6 @@ function addPercentage(percent) {
   }
 
   loadingBar.style.width = loadingBar.dataset.perc+"%";
-
 }
 
 function fullPercentage() {

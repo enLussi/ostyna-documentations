@@ -11,7 +11,7 @@ class Admin extends User{
 
   public function __construct(?int $identifier){
     if(!is_null($identifier) && is_int($identifier)) {
-      $entity = DatabaseUtils::get_entity($identifier, 'admin');
+      $entity = DatabaseUtils::get_entity($identifier, 'Admin');
     	$this->id = $entity['id'];
 			$this->roles = $entity['roles'];
 

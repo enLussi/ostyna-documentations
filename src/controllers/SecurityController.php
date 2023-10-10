@@ -47,6 +47,9 @@ class SecurityController extends AbstractPageController
           $_SESSION['User'] = [
             'id' => $result['id']
           ];
+
+          session_regenerate_id(true);
+
           CoreUtils::redirect('mainpage', true);
         }
       }
@@ -88,11 +91,15 @@ class SecurityController extends AbstractPageController
         //Est ce qu'un utilisateur existe déjà avec cette addresse mail
         $exists_mail = Repositories::getUserFromEmail($_POST['email']);
 
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
         if($exists_name === false && $exists_mail === false) {
           $user = DatabaseUtils::sql("INSERT INTO user (email, username, password) VALUES (:email, :username, :password)",[
-            "email" => $_POST['email'],
-            "username" => $_POST['username'],
-            "password" => password_hash($_POST['password'], PASSWORD_DEFAULT)
+            "email" => $email,
+            "username" => $username,
+            "password" => $password
           ], respond: true);
           if(isset($user) && !is_null($user)) {
             $id = intval($user);
@@ -107,15 +114,15 @@ class SecurityController extends AbstractPageController
                 'id' => $id
               ];
 
-              session_regenerate_id();
+              session_regenerate_id(true);
             }
           }
 
           CoreUtils::redirect('mainpage', true);
 
         } else {
-          //Si existe on renvoie l'utilisateur vers la page d'inscription
-          CoreUtils::redirect('subscribe', true);
+          //Si existe on renvoie l'utilisateur vers la page de connexion
+          CoreUtils::redirect('security', true);
         }
     
       }

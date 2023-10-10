@@ -15,7 +15,7 @@ class Changelog extends BaseEntity{
 
   public function __construct(?int $identifier){
     if(!is_null($identifier) && is_int($identifier)) {
-      $entity = DatabaseUtils::get_entity($identifier, 'changelog');
+      $entity = DatabaseUtils::get_entity($identifier, 'Changelog');
     	$this->id = $entity['id'];
 			$this->date = new DateTimeImmutable($entity['date']);
 			$this->content = $entity['content'];

@@ -99,7 +99,7 @@ class BchangelogController extends AbstractPageController
       $link = $_POST['link'];
       $name = $_POST['version'];
       $version_id = DatabaseUtils::sql(
-        "INSERT INTO version (link, name, issupported) VALUES ('$link', '$name', 1)", respond: true
+        "INSERT INTO Version (link, name, issupported) VALUES ('$link', '$name', 1)", respond: true
       );
 
       $date = date('Y-m-d G:i:s', time());
@@ -107,7 +107,7 @@ class BchangelogController extends AbstractPageController
       $author_id = $this->get_user()->getId();
 
       DatabaseUtils::sql(
-        "INSERT INTO changelog (date, content, version_id, author_id) VALUES (:date, :content, $version_id, $author_id)",
+        "INSERT INTO Changelog (date, content, version_id, author_id) VALUES (:date, :content, $version_id, $author_id)",
         [
           "date" => $date,
           "content" => $content,

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Exception;
 use Ostyna\Core\BaseCore;
 
 class Core {

@@ -12,7 +12,7 @@ class Subscriber extends User{
 
   public function __construct(?int $identifier){
     if(!is_null($identifier) && is_int($identifier)) {
-      $entity = DatabaseUtils::get_entity($identifier, 'subscriber');
+      $entity = DatabaseUtils::get_entity($identifier, 'Subscriber');
     	$this->id = $entity['id'];
 			$this->subscribeat = new DateTimeImmutable($entity['subscribeat']);
 

@@ -1,4 +1,5 @@
-<nav class="navbar bg-dark">
+
+<nav class="navbar bg-dark responsive-desktop">
   <div class="container">
     <div class="nav">
       <a class="navbar-brand" href="/">
@@ -15,6 +16,33 @@
       <a class="nav-link text-light" href="/deconnexion">Deconnexion</a>
       {{ endif }}
     </div>
-    
+  </div>
+</nav>
+
+
+<div class="collapse responsive-phone" id="navbarToggleExternalContent" data-bs-theme="dark">
+  <div class="bg-dark p-4">
+    <div class="d-flex flex-column gap-2 mb-2">
+      <a class="navbar-brand" href="/">
+        <img src="/assets/svgs/logo/logoOstyna-full-light.svg" alt="Ostyna" height="24">
+      </a>
+      <a class="nav-link text-light" href="/documentation">Documentation</a>
+      <a class="nav-link text-light" href="https://github.com/enLussi/ostyna-framework/tree/dev" target="_blank">Téléchargement</a>
+      <a class="nav-link text-light" href="/changelog">Changelogs</a>
+      <a class="nav-link text-light" href="/tickets">Rapporter un bug</a>
+    </div>
+    <div>
+      <a class="nav-link text-light" href="{{ connexion_button.link }}">{{ connexion_button.label }}</a>
+      {{ if connexion_button.connected == "true" }}
+      <a class="nav-link text-light" href="/deconnexion">Deconnexion</a>
+      {{ endif }}
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-dark bg-dark responsive-phone">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   </div>
 </nav>

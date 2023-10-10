@@ -6,13 +6,38 @@
   font-family: 'Nunito Sans', sans-serif;
 }
 
+@media screen and (min-width: 1024px) {
+  .responsive-desktop {
+    display: block;
+  }
+
+  .responsive-phone {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .responsive-desktop {
+    display: none;
+  }
+
+  .responsive-phone {
+    display: block;
+  }
+}
+
 main {
   min-height: 80vh;
 }
 
-.paragraph {
-  width: clamp(350px, 95% ,550px);
+h1 {
+  min-width: 300px;
 }
+
+.paragraph {
+  width: clamp(300px, 95% ,550px);
+}
+
 
 footer > section{
   width: clamp(300px, 95%, 1000px);
@@ -30,6 +55,22 @@ footer > section > div {
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: minmax(3rem, auto);
   column-gap: 20px;
+}
+
+@media screen and (max-width: 1023px) {
+  footer .links {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    max-width: 450px;
+  }
+
+  footer .links a {
+    display: block;
+  }
 
 }
 

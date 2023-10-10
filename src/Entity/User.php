@@ -13,7 +13,7 @@ class User extends BaseEntity{
 
   public function __construct(?int $identifier){
     if(!is_null($identifier) && is_int($identifier)) {
-      $entity = DatabaseUtils::get_entity($identifier, 'user');
+      $entity = DatabaseUtils::get_entity($identifier, 'User');
       $this->id = $entity['id'];
 			$this->email = $entity['email'];
 			$this->username = $entity['username'];

@@ -118,7 +118,13 @@ class TicketsController extends AbstractPageController
 
         DatabaseUtils::sql(
           "INSERT INTO tickets (title, date, content, seriousness, author_id, resolver_id, state_id)
-          VALUES ('$title', '$date', \"$content\", $seriousness, $author, 3, 1)", respond: true);
+          VALUES (:title, :date, :content, :seriousness, :author, 3, 1)", [
+            'title' => $title,
+            'date' => $date,
+            'content' => $content,
+            'seriousness' => $seriousness,
+            'author' => $author
+          ], respond: true);
 
       } elseif(isset($_POST['isnew']) && $_POST['isnew'] === "false") {
 

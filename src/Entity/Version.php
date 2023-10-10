@@ -13,7 +13,7 @@ class Version extends BaseEntity{
 
   public function __construct(?int $identifier){
     if(!is_null($identifier) && is_int($identifier)) {
-      $entity = DatabaseUtils::get_entity($identifier, 'version');
+      $entity = DatabaseUtils::get_entity($identifier, 'Version');
     	$this->id = $entity['id'];
 			$this->link = $entity['link'];
 			$this->name = $entity['name'];

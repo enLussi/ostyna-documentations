@@ -1,7 +1,9 @@
 <main class="py-4">
   <section class="block border-top m-auto py-3 px-5">
     <h2 class="text-center py-3">Vos Informations</h2>
-    <p>Vous êtes inscrit depuis : <span class="text-center bg-primary-subtle rounded p-1">{{ user.subscribeat format('d/m/Y') }}</span></p>
+    <p>Vous êtes inscrit depuis : <span class="text-center bg-primary-subtle rounded p-1">
+      {{ user.subscribeat format('d/m/Y') }}</span>
+    </p>
     <p>Nom d'utilisateur : <span class="text-center bg-primary-subtle rounded p-1">{{ user.username }}</span></p>
     <p>Email : <span class="text-center bg-primary-subtle rounded p-1">{{ user.email }}</span></p>
   </section>

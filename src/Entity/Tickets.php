@@ -18,7 +18,7 @@ class Tickets extends BaseEntity{
 
   public function __construct(?int $identifier){
     if(!is_null($identifier) && is_int($identifier)) {
-      $entity = DatabaseUtils::get_entity($identifier, 'tickets');
+      $entity = DatabaseUtils::get_entity($identifier, 'Tickets');
     	$this->id = $entity['id'];
 			$this->title = $entity['title'];
 			$this->date = new DateTimeImmutable($entity['date']);

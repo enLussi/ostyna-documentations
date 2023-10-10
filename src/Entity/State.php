@@ -11,7 +11,7 @@ class State extends BaseEntity{
 
   public function __construct(?int $identifier){
     if(!is_null($identifier) && is_int($identifier)) {
-      $entity = DatabaseUtils::get_entity($identifier, 'state');
+      $entity = DatabaseUtils::get_entity($identifier, 'State');
     	$this->id = $entity['id'];
 			$this->name = $entity['name'];
     }
